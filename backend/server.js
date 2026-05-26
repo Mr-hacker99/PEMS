@@ -47,6 +47,7 @@ io.on('connection', (socket) => {
   });
 });
 
+
 // ==================== MIDDLEWARE ====================
 app.use(helmet({
   crossOriginResourcePolicy: { policy: 'cross-origin' }, // Allow images to load
@@ -61,6 +62,24 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
+
+const express = require('express');
+const cors = require('cors');
+
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+
+app.get('/', (req, res) => {
+  res.send('Backend Running');
+});
+
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
 
 // Rate limiting
 const limiter = rateLimit({
