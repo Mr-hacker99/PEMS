@@ -307,14 +307,14 @@ const LandingPage = () => {
               <span className="font-bold text-white">PEMS</span>
               <span className="text-gray-600 text-sm">— Personal Expense Management System</span>
             </div>
-            <div className="flex items-center gap-6 text-sm">
+            {/* <div className="flex items-center gap-6 text-sm">
               <span>Final Year College Project</span>
               <span>Built with MERN Stack</span>
               <span>© 2025 PEMS</span>
-            </div>
+            </div> */}
           </div>
           <p className="text-center text-xs text-gray-600 mt-6">
-            Powered by React.js • Node.js • MongoDB • Socket.IO • Tesseract.js OCR • eSewa Payment Gateway
+            © 2026 PEMS. All rights reserved.
           </p>
         </div>
       </footer>
