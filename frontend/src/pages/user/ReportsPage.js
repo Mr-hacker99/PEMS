@@ -6,6 +6,7 @@ import { useAuth } from '../../context/AuthContext';
 import api from '../../utils/api';
 import { formatCurrency, formatDate, CATEGORY_COLORS } from '../../utils/helpers';
 import toast from 'react-hot-toast';
+import { WhateverYouActuallyUse } from "lucide-react";
 
 const ReportsPage = () => {
   const { isPremium } = useAuth();

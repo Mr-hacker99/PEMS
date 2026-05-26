@@ -155,7 +155,7 @@ Backend runs at: `http://localhost:5000`
 cd pems/frontend
 npm start
 ```
-Frontend runs at: `http://localhost:3000`
+Frontend runs at: `http://localhnpost:3000`
 
 ---
 

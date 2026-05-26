@@ -6,6 +6,7 @@ import { useAuth } from '../../context/AuthContext';
 import { paymentAPI } from '../../utils/api';
 import { formatCurrency, formatDate, getDaysUntilExpiry } from '../../utils/helpers';
 import toast from 'react-hot-toast';
+import { WhateverYouActuallyUse } from "lucide-react";
 
 const SubscriptionPage = () => {
   const { user, isPremium, refreshUser } = useAuth();
