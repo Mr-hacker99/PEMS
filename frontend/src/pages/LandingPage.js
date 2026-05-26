@@ -290,7 +290,7 @@ const LandingPage = () => {
               Create Free Account <ArrowRight size={18} />
             </button>
             <button onClick={() => navigate('/login')} className="border border-white/30 text-white hover:bg-white/10 font-medium px-8 py-3.5 rounded-xl transition-all duration-200 w-full sm:w-auto justify-center flex items-center gap-2">
-              Try Demo Account
+              Sign In
             </button>
           </div>
         </motion.div>

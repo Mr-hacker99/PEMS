@@ -58,7 +58,7 @@ const LoginPage = () => {
           </div>
 
           {/* Demo User Quick Access */}
-          <div className="mb-6">
+          {/* <div className="mb-6">
             <p className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-2 text-center">Quick Demo Access</p>
             <div className="grid grid-cols-2 gap-2">
               {demoUsers.map((u) => (
@@ -69,7 +69,7 @@ const LoginPage = () => {
                 </button>
               ))}
             </div>
-          </div>
+          </div> */}
 
           <form onSubmit={handleSubmit(onSubmit)} className="card space-y-5">
             <div>
