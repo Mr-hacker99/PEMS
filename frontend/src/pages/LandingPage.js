@@ -30,9 +30,9 @@ const LandingPage = () => {
   ];
 
   const testimonials = [
-    { name: 'Rohan Shrestha', role: 'Software Engineer, Kathmandu', text: 'PEMS completely changed how I manage my salary. The AI analysis showed I was spending 40% on food!', avatar: 'R', plan: 'Premium' },
-    { name: 'Priya Maharjan', role: 'Business Owner, Lalitpur', text: 'The OCR scanner is amazing. I just photo my receipts and everything gets logged automatically.', avatar: 'P', plan: 'Premium' },
-    { name: 'Bikash Tamang', role: 'Student, Pokhara', text: 'Free plan is perfect for me as a student. Budget monitoring helped me save for my laptop in 3 months!', avatar: 'B', plan: 'Free' },
+    { name: 'Sushant Poudel', role: 'Software Engineer, Bhairahawa', text: 'PEMS completely changed how I manage my salary. The AI analysis showed I was spending 40% on food!', avatar: 'R', plan: 'Premium' },
+    { name: 'Shishir Maharjan', role: 'Business Owner, Bhairahawa', text: 'The OCR scanner is amazing. I just photo my receipts and everything gets logged automatically.', avatar: 'P', plan: 'Premium' },
+    { name: 'Sushil Panthi', role: 'Student, Butwal', text: 'Free plan is perfect for me as a student. Budget monitoring helped me save for my laptop in 3 months!', avatar: 'B', plan: 'Free' },
   ];
 
   const faqs = [
@@ -78,7 +78,7 @@ const LandingPage = () => {
         <div className="max-w-7xl mx-auto text-center">
           <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={0}>
             <span className="inline-flex items-center gap-2 bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 text-sm font-medium px-4 py-1.5 rounded-full mb-6">
-              <Crown size={14} /> Nepal's #1 Personal Finance App
+              <Crown size={14} />  Personal Finance App
             </span>
           </motion.div>
           <motion.h1 variants={fadeUp} initial="hidden" animate="visible" custom={1}
