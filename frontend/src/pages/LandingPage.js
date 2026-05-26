@@ -31,7 +31,7 @@ const LandingPage = () => {
 
   const testimonials = [
     { name: 'Sushant Poudel', role: 'Software Engineer, Bhairahawa', text: 'PEMS completely changed how I manage my salary. The AI analysis showed I was spending 40% on food!', avatar: 'R', plan: 'Premium' },
-    { name: 'Shishir Maharjan', role: 'Business Owner, Bhairahawa', text: 'The OCR scanner is amazing. I just photo my receipts and everything gets logged automatically.', avatar: 'P', plan: 'Premium' },
+    { name: 'Shishir Mahara', role: 'Business Owner, Bhairahawa', text: 'The OCR scanner is amazing. I just photo my receipts and everything gets logged automatically.', avatar: 'P', plan: 'Premium' },
     { name: 'Sushil Panthi', role: 'Student, Butwal', text: 'Free plan is perfect for me as a student. Budget monitoring helped me save for my laptop in 3 months!', avatar: 'B', plan: 'Free' },
   ];
 
