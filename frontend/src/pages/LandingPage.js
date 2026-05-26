@@ -101,7 +101,7 @@ const LandingPage = () => {
           </motion.div>
           <motion.p variants={fadeUp} initial="hidden" animate="visible" custom={4}
             className="text-sm text-gray-400 dark:text-gray-500 mt-4">
-            No credit card required • Free forever plan available • eSewa payment
+           Let us Manage Your Finances, So You Can Focous on Living Your Life!
           </motion.p>
 
           {/* Hero Stats */}
