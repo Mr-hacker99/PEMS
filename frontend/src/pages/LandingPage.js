@@ -96,7 +96,7 @@ const LandingPage = () => {
               Start for Free <ArrowRight size={18} />
             </button>
             <button onClick={() => navigate('/login')} className="btn-secondary text-base px-8 py-3.5 w-full sm:w-auto">
-              Demo Login
+              Sign In
             </button>
           </motion.div>
           <motion.p variants={fadeUp} initial="hidden" animate="visible" custom={4}
