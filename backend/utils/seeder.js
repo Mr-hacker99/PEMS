@@ -6,7 +6,7 @@ const Expense = require('../models/Expense');
 const { Income, Budget, Subscription, Notification } = require('../models/index');
 
 const connectDB = async () => {
-  await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/pems');
+  await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/pems');
   console.log('✅ MongoDB Connected for seeding');
 };
 
