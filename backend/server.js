@@ -6,6 +6,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const path = require('path');
+
 const connectDB = require('./config/db');
 const routes = require('./routes/index');
 
@@ -30,7 +31,6 @@ const connectedUsers = new Map();
 io.on('connection', (socket) => {
   console.log(`🔌 Socket connected: ${socket.id}`);
 
-  // User joins their private room
   socket.on('join', (userId) => {
     socket.join(userId);
     connectedUsers.set(userId, socket.id);
@@ -47,89 +47,104 @@ io.on('connection', (socket) => {
   });
 });
 
-
 // ==================== MIDDLEWARE ====================
-app.use(helmet({
-  crossOriginResourcePolicy: { policy: 'cross-origin' }, // Allow images to load
-}));
 
-app.use(cors({
-  origin: [
-    'http://localhost:3000',
-    process.env.FRONTEND_URL
-  ],
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-}));
+app.use(
+  helmet({
+    crossOriginResourcePolicy: { policy: 'cross-origin' },
+  })
+);
 
-const express = require('express');
-const cors = require('cors');
-
-const app = express();
-
-app.use(cors());
-app.use(express.json());
-
-app.get('/', (req, res) => {
-  res.send('Backend Running');
-});
-
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
-
-// Rate limiting
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 200, // max 200 requests per window
-  message: { success: false, message: 'Too many requests. Please try again later.' },
-});
-app.use('/api', limiter);
+app.use(
+  cors({
+    origin: [
+      'http://localhost:3000',
+      process.env.FRONTEND_URL,
+    ],
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  })
+);
 
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-// Serve uploaded files statically
+// Rate limiting
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 200,
+  message: {
+    success: false,
+    message: 'Too many requests. Please try again later.',
+  },
+});
+
+app.use('/api', limiter);
+
+// Serve uploads folder
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// ==================== ROUTES ====================
+// ==================== TEST ROUTES ====================
+
+// Root route
+app.get('/', (req, res) => {
+  res.send('Backend Running');
+});
+
+// Health route
+app.get('/health', (req, res) => {
+  res.json({
+    success: true,
+    message: 'PEMS Backend is running!',
+    timestamp: new Date(),
+  });
+});
+
+// ==================== API ROUTES ====================
+
 app.use('/api', routes);
 
-// Health check
-app.get('/health', (req, res) => {
-  res.json({ success: true, message: 'PEMS Backend is running!', timestamp: new Date() });
+// ==================== 404 HANDLER ====================
+
+app.use((req, res) => {
+  res.status(404).json({
+    success: false,
+    message: `Route ${req.originalUrl} not found.`,
+  });
 });
 
-// 404 handler
-app.use('*', (req, res) => {
-  res.status(404).json({ success: false, message: `Route ${req.originalUrl} not found.` });
-});
+// ==================== GLOBAL ERROR HANDLER ====================
 
-// Global error handler
 app.use((err, req, res, next) => {
   console.error('❌ Global Error:', err.stack);
+
   const statusCode = err.statusCode || 500;
+
   res.status(statusCode).json({
     success: false,
     message: err.message || 'Internal server error.',
-    ...(process.env.NODE_ENV === 'development' && { stack: err.stack }),
+    ...(process.env.NODE_ENV === 'development' && {
+      stack: err.stack,
+    }),
   });
 });
 
 // ==================== START SERVER ====================
+
 const PORT = process.env.PORT || 5000;
 
-connectDB().then(() => {
-  server.listen(PORT, () => {
-    console.log(`\n🚀 PEMS Backend Server running on port ${PORT}`);
-    console.log(`📡 Socket.IO enabled`);
-    console.log(`🌐 API: http://localhost:${PORT}/api`);
-    console.log(`❤️  Health: http://localhost:${PORT}/health`);
-    console.log(`\nEnvironment: ${process.env.NODE_ENV || 'development'}`);
+connectDB()
+  .then(() => {
+    server.listen(PORT, () => {
+      console.log(`🚀 PEMS Backend running on port ${PORT}`);
+      console.log(`📡 Socket.IO enabled`);
+      console.log(`🌐 API: /api`);
+      console.log(`❤️ Health: /health`);
+    });
+  })
+  .catch((err) => {
+    console.error('❌ Database connection failed:', err);
   });
-});
 
 module.exports = { app, server };
